@@ -1,0 +1,23 @@
+{
+  "name": "cm_jogo",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davischowe/jogo_xerife.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "Node.js"
+  ],
+  "author": "Davi Schoenardie de Almeida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davischowe/jogo_xerife/issues"
+  },
+  "homepage": "https://github.com/davischowe/jogo_xerife#readme",
+  "description": ""
+}
