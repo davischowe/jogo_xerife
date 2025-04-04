@@ -1,14 +1,77 @@
-body{
+body {
+    margin: 0;
     background-color: black;
-}
-
-canvas{
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+  
+  #painel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 280px; /* diminuímos a largura pra não invadir o canvas */
+    height: 100%;
+    background-color: black; /* fundo sólido */
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    z-index: 10;
+  }
+  
+  canvas {
     background-color: grey;
-    margin: auto;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    margin: auto;
     border-radius: 10px;
+    z-index: 1;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: red;
+  }
+
+
+  .botao,
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: darkred;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 10px;
 }
+
+.botao:hover,
+button:hover {
+  background-color: red;
+}
+
+#imagem-cavalo {
+    position: absolute;
+    top: 50%;
+    left: 60%; /* em vez de 50%, agora vai mais pro lado direito */
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    z-index: 1;
+  } 
