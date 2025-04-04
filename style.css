@@ -12,3 +12,10 @@ canvas{
     right: 0;
     border-radius: 10px;
 }
+
+body{
+    background: url(imgs/bg_guard_bank.jpg);
+    background-color: #3b3b3b;
+    background-repeat: no-repeat;
+    background-size: 100vw 100vh
+}

@@ -37,8 +37,8 @@ class Xerife extends Obj{
         this.x += this.dir
         if(this.x <=2){
             this.x = 2
-        }else if(this.x >= 416){
-            this.x = 416
+        }else if(this.x >= 1200){
+            this.x = 1200
         }
     }
 
@@ -58,4 +58,47 @@ class Bandido extends Obj{
         this.x = Math.floor(Math.random() * ((416 - 2 + 1) + 2))
     }
 
+}
+
+
+class Civilhomem extends Obj{
+    mov_civil(){
+        this.x += 2
+        if(this.x >= 780){
+            this.recomeca()
+        }
+    }
+    recomeca(){
+        this.x = -100
+        this.y = Math.floor(Math.random() * ((416 - 2 + 1) + 2))
+    }
+
+
+}
+
+
+class Civilmulher extends Obj{
+    mov_civil_M(){
+        this.x += 2
+        if(this.x >= 780){
+            this.recomeca()
+        }
+    }
+    recomeca(){
+        this.x = -100
+        this.y = Math.floor(Math.random() * ((416 - 2 + 1) + 2))
+    }
+
+
+}
+
+class Tiro extends Obj{
+    des_tiro(){
+        des.fillStyle = this.at
+        des.fillRect(this.x, this.y, this.w, this.h)
+    }
+
+    mov(){
+        this.y -= 10
+    }
 }
