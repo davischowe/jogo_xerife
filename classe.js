@@ -64,7 +64,7 @@ class Bandido extends Obj{
 class Civilhomem extends Obj{
     mov_civil(){
         this.x += 2
-        if(this.x >= 780){
+        if(this.x >= 1300){
             this.recomeca()
         }
     }
@@ -80,7 +80,7 @@ class Civilhomem extends Obj{
 class Civilmulher extends Obj{
     mov_civil_M(){
         this.x += 2
-        if(this.x >= 780){
+        if(this.x >= 1300){
             this.recomeca()
         }
     }
@@ -101,4 +101,12 @@ class Tiro extends Obj{
     mov(){
         this.y -= 10
     }
+}
+class Disco extends Obj{
+    vel = Math.random() * (6 - 3) + 3
+
+    mov(){
+        this.y += this.vel
+    }
+    
 }
