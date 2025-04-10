@@ -37,8 +37,8 @@ class Xerife extends Obj{
         this.x += this.dir
         if(this.x <=2){
             this.x = 2
-        }else if(this.x >= 1200){
-            this.x = 1200
+        }else if(this.x >= 920){
+            this.x = 920
         }
     }
 

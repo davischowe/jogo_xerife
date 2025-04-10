@@ -1,10 +1,10 @@
 let des = document.getElementById('des').getContext('2d')
 
-let xerife = new Xerife(300,650,100,45,'imgs/xerife.png')
+let xerife = new Xerife(300,650,150,65,'imgs/xerife.png')
 let bandido = new Bandido(100,700,100,45,'imgs/bandido.png')
 let bandido2 = new Bandido(200,400,100,45,'imgs/bandido2.png')
-let civil = new Civilhomem(400,200,100,45,'imgs/civil_H.png')
-let civilMule = new Civilmulher(100,700,100,45,'imgs/civil_M.png')
+let civil = new Civilhomem(1200,800,130,45,'imgs/civil_H.png')
+let civilMule = new Civilmulher(1200,800,130,45,'imgs/civil_M.png')
 
 let bg = new Image();
 bg.scr = 'imgs/bg_guard_bank.jpg'
@@ -37,24 +37,24 @@ let discos = {
         this.time1 += 1
         this.time2 += 1
         this.time3 += 1
-        let pos_x = (Math.random() * (438 - 2 +1)+2)
-        let pos_x2 = (Math.random() * (438 - 2 +1)+2)
-        let pos_x3 = (Math.random() * (438 - 2 +1)+2)
+        let pos_x = (Math.random() * (900 - 2 +1)+2)
+        // let pos_x2 = (Math.random() * (900 - 2 +1)+2)
+        // let pos_x3 = (Math.random() * (900 - 2 +1)+2)
         if(this.time1 >=60){
             this.time1 = 0
-            grupoDiscos.push(new Disco(pos_x,-200,50,50,'/imgs/tiro.png'))
+            grupoDiscos.push(new Disco(pos_x,-200,75,75,'/imgs/bandido.png'))
             console.log(grupoDiscos)
         }
-        if(this.time2 >=85){
-            this.time2 = 0
-            grupoDiscos.push(new Disco(pos_x2,-300,50,50,'/imgs/tiro.png'))
-            console.log(grupoDiscos)
-        }
-        if(this.time3 >=135){
-            this.time3 = 0
-            grupoDiscos.push(new Disco(pos_x3,-400,50,50,'/imgs/tiro.png'))
-            console.log(grupoDiscos)
-        }
+        // if(this.time2 >=85){
+        //     this.time2 = 0
+        //     grupoDiscos.push(new Disco(pos_x2,-300,50,50,'/imgs/bandido2.png'))
+        //     console.log(grupoDiscos)
+        // }
+        // if(this.time3 >=135){
+        //     this.time3 = 0
+        //     grupoDiscos.push(new Disco(pos_x3,-400,50,50,'/imgs/bandido.png'))
+        //     console.log(grupoDiscos)
+        // }
     },
     des(){
         grupoDiscos.forEach((disc)=>{
@@ -77,7 +77,7 @@ let discos = {
         this.destroiDisco()
         grupoDiscos.forEach((disc)=>{
             disc.mov()
-            if(disc.y >= 710){
+            if(disc.y >= 1010){
                 grupoDiscos.splice(grupoDiscos.indexOf(disc),1)
             }
         })
@@ -119,8 +119,8 @@ function desenhar(){
 xerife.des_obj();
 tiros.des()
 discos.des()
-bandido.des_obj();
-bandido2.des_obj();
+// bandido.des_obj();
+// bandido2.des_obj();
 civil.des_obj();
 civilMule.des_obj();
 
@@ -137,8 +137,8 @@ function atualizar(){
     xerife.x += xerife.dir 
 
 
-    bandido2.mov_bandido();
-bandido.mov_bandido();
+//     bandido2.mov_bandido();
+// bandido.mov_bandido();
 xerife.mov_xerife();
 civil.mov_civil();
 civilMule.mov_civil_M()
