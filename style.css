@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-image: url('fundopc.jpg'); /* fundo do deserto */
+  background-image: url('backinicio.gif'); /* fundo do deserto */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,31 +14,59 @@ body {
 #painel {
   width: 280px;
   height: 100%;
-  background-color: black;
   padding: 15px;
   box-sizing: border-box;
   overflow-y: auto;
   z-index: 10;
+  background-color: #4b2e1f;
+  border: 4px solid #8b5e3c;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
-button,
-.botao {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: darkred;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.wild-button {
+  margin-top: 30px;
+  padding: 15px 30px;
+  background-color: #7a5230;
+  color: #fff0c0;
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 20px;
+  border: 4px solid #4e3422;
+  border-radius: 12px;
+  box-shadow: inset 0 0 5px #3e2a1a, 2px 2px 8px rgba(0, 0, 0, 0.5);
   text-decoration: none;
-  display: inline-block;
-  margin-top: 10px;
+  transition: all 0.3s ease;
 }
 
-button:hover,
-.botao:hover {
-  background-color: red;
+.wild-button:hover {
+  background-color: #996239;
+  color: #fffbe8;
+  box-shadow: 0 0 12px #e3b176, 0 0 18px #a86f45;
+  transform: scale(1.05);
 }
+
+
+
+#gameover {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#gameover img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+body.gameover {
+  background-image: url('game_over.jpg');
+}
+
+
 
 /* Imagem principal central (ajustada ao lado do painel) */
 
