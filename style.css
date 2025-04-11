@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   background-image: url('backinicio2.gif'); /* fundo do deserto */
@@ -85,3 +86,15 @@ p{
   padding: 10px;
   font-size: 20px;
 }
+canvas{
+    background-color: grey;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 10px;
+}
+
+
