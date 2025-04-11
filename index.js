@@ -9,6 +9,9 @@ let civilMule = new Civilmulher(1200,800,130,45,'imgs/civil_M.png')
 let bg = new Image();
 bg.scr = 'imgs/bg_guard_bank.jpg'
 
+let jogoIniciado = false;
+let jogoPausado = false;
+
 let grupoTiros = [] 
 let tiros = {
     des(){
@@ -111,6 +114,16 @@ document.addEventListener('keyup', (e)=>{
         }
 } )
 
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'g') {
+        jogoIniciado = true;
+    }
+
+    if (e.key === 'p') {
+        jogoPausado = !jogoPausado; // Alterna entre pausado e não pausado
+    }
+});
+
 
 
 
@@ -156,12 +169,22 @@ tiros.atual()
 
 
 function main(){
-    des.clearRect(0,0,1300,750)
-desenhar();
-atualizar();
-requestAnimationFrame(main);
+    des.clearRect(0, 0, 1300, 750);
 
+    if (jogoIniciado && !jogoPausado) {
+        desenhar();
+        atualizar();
+    } else {
+        des.font = "30px Arial";
+        des.fillStyle = "white";
+        des.textAlign = "center";
+        des.fillText(
+            jogoPausado ? "Jogo Pausado - Pressione P para continuar" : "Pressione G para iniciar",
+            515, 375
+        );
+    }
 
+    requestAnimationFrame(main);;
 }
 
 main()
