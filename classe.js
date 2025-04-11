@@ -23,25 +23,35 @@ class Obj{
                 return false
             }
     }
+  
 }
-
 
 
 
 class Xerife extends Obj{
     dir = 0
     pontos = 0
-    vida = 3
+    vida = 10
 
     mov_xerife(){
         this.x += this.dir
-        if(this.x <=2){
-            this.x = 2
-        }else if(this.x >= 920){
-            this.x = 920
+        if(this.x <=1){
+            this.x = 1
+        }else if(this.x >= 843){
+            this.x = 843
         }
     }
+    vidas(objeto) {
+        if (!objeto.pontuacao && objeto.y >= 680 && objeto.y <= 1000) {
+            objeto.pontuacao = true; 
+            return true;
+        }
+        if (objeto.y > 700) {
+            objeto.pontuacao = false;
+        }
 
+        return false;
+    }
 }
 
 class Bandido extends Obj{
@@ -110,3 +120,13 @@ class Disco extends Obj{
     }
     
 }
+
+class Texto{
+    des_text(texto,x,y,cor,font){
+        des.font = font
+        des.lineWidth = 2
+        des.fillStyle = cor
+        des.fillText(texto,x,y)
+    }
+}
+

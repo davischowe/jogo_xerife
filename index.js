@@ -1,10 +1,13 @@
 let des = document.getElementById('des').getContext('2d')
 
 let xerife = new Xerife(300,650,150,65,'imgs/xerife.png')
-let bandido = new Bandido(100,700,100,45,'imgs/bandido.png')
-let bandido2 = new Bandido(200,400,100,45,'imgs/bandido2.png')
-let civil = new Civilhomem(1200,800,130,45,'imgs/civil_H.png')
-let civilMule = new Civilmulher(1200,800,130,45,'imgs/civil_M.png')
+//let bandido = new Bandido(100,60,100,45,'imgs/bandido.png')
+//let bandido2 = new Bandido(200,400,100,45,'imgs/bandido2.png')
+let civil = new Civilhomem(120,800,87,102,'imgs/civil_H.png')
+let civilMule = new Civilmulher(1200,800,87,102,'imgs/civil_M.png')
+
+let txt_pnts = new Texto()
+let txt_vida = new Texto()
 
 let bg = new Image();
 bg.scr = 'imgs/bg_guard_bank.jpg'
@@ -89,6 +92,8 @@ let discos = {
 
 
 
+
+
 document.addEventListener('keypress', (ev)=>{
     if (ev.key === 'l') {
         grupoTiros.push(new Tiro(xerife.x - 4 + xerife.w / 2, xerife.y, 8, 16, 'red'))
@@ -114,6 +119,15 @@ document.addEventListener('keyup', (e)=>{
         }
 } )
 
+function perderVida(){
+    grupoDiscos.forEach((disc) => {
+        if (xerife.vidas(disc)) {
+            xerife.vida -= 1
+            grupoDiscos.splice(grupoDiscos.indexOf(disc), 1)
+        }
+    })
+}
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'g') {
         jogoIniciado = true;
@@ -128,45 +142,29 @@ document.addEventListener('keydown', (e) => {
 
 
 
+
 function desenhar(){
 xerife.des_obj();
 tiros.des()
 discos.des()
-// bandido.des_obj();
-// bandido2.des_obj();
 civil.des_obj();
 civilMule.des_obj();
-
-
+txt_vida.des_text('Vidas:', 10, 30, 'white', '20px Arial')
+txt_vida.des_text(xerife.vida, 70, 30, 'white', '20px Arial')
+txt_pnts.des_text('Pontos:', 860, 30, 'white', '20px Arial')
+txt_pnts.des_text(xerife.pontos, 930, 30, 'white', '20px Arial')
 }
-
-
-
-
-
 
 
 function atualizar(){
-    xerife.x += xerife.dir 
-
-
-//     bandido2.mov_bandido();
-// bandido.mov_bandido();
+xerife.x += xerife.dir 
 xerife.mov_xerife();
 civil.mov_civil();
-civilMule.mov_civil_M()
-tiros.atual()
- discos.atual()
+civilMule.mov_civil_M();
+tiros.atual();
+discos.atual();
+perderVida();
 }
-
-
-
-
-
-
-
-
-
 
 function main(){
     des.clearRect(0, 0, 1300, 750);
