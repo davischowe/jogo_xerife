@@ -149,10 +149,10 @@ tiros.des()
 discos.des()
 civil.des_obj();
 civilMule.des_obj();
-txt_vida.des_text('Vidas:', 10, 30, 'white', '20px Arial')
-txt_vida.des_text(xerife.vida, 70, 30, 'white', '20px Arial')
-txt_pnts.des_text('Pontos:', 860, 30, 'white', '20px Arial')
-txt_pnts.des_text(xerife.pontos, 930, 30, 'white', '20px Arial')
+txt_vida.des_text('Vidas:', 40, 30, 'white', '20px Arial')
+txt_vida.des_text(xerife.vida, 90, 30, 'white', '20px Arial')
+txt_pnts.des_text('Pontos:', 900, 30, 'white', '20px Arial')
+txt_pnts.des_text(xerife.pontos, 960, 30, 'white', '20px Arial')
 }
 
 
