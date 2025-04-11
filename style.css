@@ -64,13 +64,14 @@ body {
 }
 
 body.gameover {
-  background-image: url('game_over.jpg');
+  background-image: url('gif_game_over.gif');
 }
 
-h1{
+h1,h2{
   font-family: 'Cinzel Decorative', cursive;
-  font-size: 28px;
+  font-size: 32px;
   color: #ffd68a;
+  padding-left: 10px;
 }
 
 
@@ -84,4 +85,3 @@ p{
   padding: 10px;
   font-size: 20px;
 }
-
