@@ -1,18 +1,19 @@
 body {
   margin: 0;
-  background-image: url('backinicio.gif'); /* fundo do deserto */
+  background-image: url('backinicio2.gif'); /* fundo do deserto */
   background-size: cover;
-  background-position: center;
+  background-position: center right 200px;
   background-repeat: no-repeat;
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto Slab', serif;
   height: 100vh;
   overflow: hidden;
   display: flex;
+  background-position: calc(50% + 200px) center;
 }
 
 #painel {
-  width: 280px;
+  width: 400px;
   height: 100%;
   padding: 15px;
   box-sizing: border-box;
@@ -66,7 +67,21 @@ body.gameover {
   background-image: url('game_over.jpg');
 }
 
+h1{
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 28px;
+  color: #ffd68a;
+}
 
+
+.espaco{
+  height: 20px;
+}
 
 /* Imagem principal central (ajustada ao lado do painel) */
+
+p{
+  padding: 10px;
+  font-size: 20px;
+}
 

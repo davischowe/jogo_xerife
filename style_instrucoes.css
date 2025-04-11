@@ -15,7 +15,8 @@ body {
   }
   
   section {
-    background-color: #4b2e1f;
+    /* background-color: #4b2e1f; */
+    background-color: rgba(75, 46, 31, 0.85);
     border: 4px solid #8b5e3c;
     border-radius: 15px;
     padding: 30px 40px;
@@ -71,4 +72,8 @@ body {
     color: #fffbe8;
     box-shadow: 0 0 12px #e3b176, 0 0 18px #a86f45;
     transform: scale(1.05);
+  }
+
+  .espaco{
+    height: 20px;
   }
