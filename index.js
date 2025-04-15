@@ -12,6 +12,7 @@ let txt_vida = new Texto()
 let bg = new Image();
 bg.scr = 'imgs/bg_guard_bank.jpg'
 
+let gameover = false
 let jogoIniciado = false;
 let jogoPausado = false;
 
@@ -44,18 +45,18 @@ let discos = {
         this.time2 += 1
         this.time3 += 1
         let pos_x = (Math.random() * (900 - 2 +1)+2)
-        // let pos_x2 = (Math.random() * (900 - 2 +1)+2)
+        let pos_x2 = (Math.random() * (900 - 2 +1)+2)
         // let pos_x3 = (Math.random() * (900 - 2 +1)+2)
         if(this.time1 >=60){
             this.time1 = 0
             grupoDiscos.push(new Disco(pos_x,-200,75,75,'/imgs/bandido.png'))
             console.log(grupoDiscos)
         }
-        // if(this.time2 >=85){
-        //     this.time2 = 0
-        //     grupoDiscos.push(new Disco(pos_x2,-300,50,50,'/imgs/bandido2.png'))
-        //     console.log(grupoDiscos)
-        // }
+        if(this.time2 >=85){
+            this.time2 = 0
+            grupoDiscos.push(new Disco(pos_x2,-300,75,75,'/imgs/bandido2.png'))
+            console.log(grupoDiscos)
+        }
         // if(this.time3 >=135){
         //     this.time3 = 0
         //     grupoDiscos.push(new Disco(pos_x3,-400,50,50,'/imgs/bandido.png'))
@@ -73,7 +74,7 @@ let discos = {
                 if(tiro.colid(disc)){
                     grupoTiros.splice(grupoTiros.indexOf(tiro), 1)
                     grupoDiscos.splice(grupoDiscos.indexOf(disc), 1)
-                    // xerife.pts +=1
+                    xerife.pontos += 1
                 }
             })
         })
@@ -90,14 +91,23 @@ let discos = {
     }
 }
 
-
-
-
+function destruirCivil(){
+    grupoTiros.forEach((tiro) => {
+        if(tiro.colid(civilMule)){
+            grupoTiros.splice(grupoTiros.indexOf(tiro), 1);
+            xerife.vida -= 1;
+            civilMule.y = 2000;
+        }else if(tiro.colid(civil)){
+            grupoTiros.splice(grupoTiros.indexOf(tiro), 1);
+            xerife.vida -= 1;
+            civil.y = 2000;
+        }
+    });
+}
 
 document.addEventListener('keypress', (ev)=>{
     if (ev.key === 'l') {
         grupoTiros.push(new Tiro(xerife.x - 4 + xerife.w / 2, xerife.y, 8, 16, 'red'))
-        // console.log(grupoTiros)
     }
 
     
@@ -126,6 +136,11 @@ function perderVida(){
             grupoDiscos.splice(grupoDiscos.indexOf(disc), 1)
         }
     })
+
+    if (xerife.vida <= 0) {
+        window.location.href = 'gameover.html';
+    }
+
 }
 
 document.addEventListener('keydown', (e) => {
@@ -134,13 +149,9 @@ document.addEventListener('keydown', (e) => {
     }
 
     if (e.key === 'p') {
-        jogoPausado = !jogoPausado; // Alterna entre pausado e não pausado
+        jogoPausado = !jogoPausado;
     }
 });
-
-
-
-
 
 
 function desenhar(){
@@ -164,6 +175,7 @@ civilMule.mov_civil_M();
 tiros.atual();
 discos.atual();
 perderVida();
+destruirCivil();
 }
 
 function main(){
