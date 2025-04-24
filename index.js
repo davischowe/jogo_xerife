@@ -10,7 +10,7 @@ let txt_pnts = new Texto()
 let txt_vida = new Texto()
 
 let bg = new Image();
-bg.scr = 'imgs/bg_guard_bank.jpg'
+bg.src = 'imgs/pixil-frame-0.png';
 
 let gameover = false
 let jogoIniciado = false;
@@ -107,11 +107,20 @@ function destruirCivil(){
 
 document.addEventListener('keypress', (ev)=>{
     if (ev.key === 'l') {
-        grupoTiros.push(new Tiro(xerife.x - 4 + xerife.w / 2, xerife.y, 8, 16, 'red'))
+        if (xerife.municao > 0) {
+            grupoTiros.push(new Tiro(xerife.x - 4 + xerife.w / 2, xerife.y, 8, 16, 'red'))
+            xerife.municao -= 1;
+        }
     }
-
-    
 })
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'r') {
+        if(xerife.cartucho > 0){
+            xerife.municao = xerife.maxMunicao;
+            xerife.cartucho -= 1;
+        }
+    }
+});
     
 document.addEventListener('keydown', (e)=>{
     if((e.key === 'a' )||(e.key === 'ArrowLeft')){
@@ -155,6 +164,7 @@ document.addEventListener('keydown', (e) => {
 
 
 function desenhar(){
+des.drawImage(bg, 0, 0, 1300, 750);
 xerife.des_obj();
 tiros.des()
 discos.des()
@@ -164,6 +174,10 @@ txt_vida.des_text('Vidas:', 40, 28, 'white', '20px Arial')
 txt_vida.des_text(xerife.vida, 90, 28, 'white', '20px Arial')
 txt_pnts.des_text('Pontos:', 910, 30, 'white', '20px Arial')
 txt_pnts.des_text(xerife.pontos, 970, 30, 'white', '20px Arial')
+txt_vida.des_text('Munição:', 200, 28, 'white', '20px Arial');
+txt_vida.des_text(xerife.municao + '/' + xerife.maxMunicao, 280, 28, 'white', '20px Arial');
+txt_vida.des_text('Cartucho', 580, 28, 'white', '20px Arial');
+txt_vida.des_text(xerife.cartucho,680, 28, 'white', '20px Arial');
 }
 
 

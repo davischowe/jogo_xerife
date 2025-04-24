@@ -32,6 +32,9 @@ class Xerife extends Obj{
     dir = 0
     pontos = 0
     vida = 10
+    cartucho = 3;
+    municao = 30; // quantidade inicial
+    maxMunicao = 30; // valor máximo
 
     mov_xerife(){
         this.x += this.dir
