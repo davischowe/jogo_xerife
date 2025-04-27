@@ -15,13 +15,13 @@ class Obj{
 
     colid(objeto){
         if((this.x < objeto.x + objeto.w)&&
-            (this.x + this.w > objeto.x)&&
-            (this.y < objeto.y + objeto.x)&&
-            (this.y + this.h > objeto.y)){
-                return true
-            }else{
-                return false
-            }
+        (this.x + this.w > objeto.x)&&
+        (this.y < objeto.y + objeto.h)&&
+        (this.y + this.h > objeto.y)){
+             return true
+         }else{
+             return false
+         }
     }
   
 }
@@ -45,11 +45,12 @@ class Xerife extends Obj{
     mov_xerife(){
         this.time++;
         this.x += this.dir
-        if(this.x <=1){
-            this.x = 1
-        }else if(this.x >= 843){
-            this.x = 843
+        if(this.x <= 4){
+            this.x = 4
+        }else if(this.x >= 900){
+            this.x = 900
         }
+        if(this)
         
 
          if (this.time >= 10) {
@@ -61,8 +62,8 @@ class Xerife extends Obj{
                 this.a = 'imgs/xerife.png';  
             } else if (this.frame === 1) {
                 this.a = 'imgs/xerife_02.png';  
-            } else if (this.frame === 2) {
-                this.a = 'imgs/xerife_03.png';  
+            } else if (this.frame === 2){
+                this.a = 'imgs/xerife_03.png'
             }
         }
     }
@@ -122,7 +123,7 @@ class Civilhomem extends Obj{
     }
 
     mov_civil(){
-        this.x += 2 * velocidadeGlobal; // Alterado aqui
+        this.x += 2 * velocidadeGlobal; 
         if(this.x >= 1300){
             this.recomeca()
         }
@@ -138,6 +139,8 @@ class Civilhomem extends Obj{
                 this.a = 'imgs/civil_H.png';  
             } else if (this.frame === 1) {
                 this.a = 'imgs/civil_H2.png';  
+            } else if(this.frame === 3){
+                this.a = 'imgs/civil_H3.png'
             }
         }
     }
@@ -151,10 +154,25 @@ class Civilhomem extends Obj{
 
 
 class Civilmulher extends Obj{
+    constructor(x, y, w, h, a) {
+        super(x, y, w, h, a);
+        this.time = 0;
+        this.frame = 0;
+    }
     mov_civil_M(){
-        this.x += 2 * velocidadeGlobal; // Alterado aqui
+        this.x += 2 * velocidadeGlobal; 
         if(this.x >= 1300){
             this.recomeca()
+        }
+        this.time++;  
+        if (this.time >= 10) {
+            this.time = 0;  
+            this.frame = (this.frame + 1) % 3;  
+            if (this.frame === 1) {
+                this.a = 'imgs/civil_M.png';  
+            } else if (this.frame === 2) {
+                this.a = 'imgs/civil_M2.png';  
+            } 
         }
     }
     recomeca(){
@@ -166,13 +184,19 @@ class Civilmulher extends Obj{
 }
 
 class Tiro extends Obj{
-    des_tiro(){
-        des.fillStyle = this.at
-        des.fillRect(this.x, this.y, this.w, this.h)
+    constructor(x, y, w, h, at) {
+        super(x, y, w, h, 'imgs/tiro.png'); 
+        this.at = at; 
     }
 
-    mov(){
-        this.y -= 10
+    des_tiro() {
+        let img = new Image();
+        img.src = this.a;
+        des.drawImage(img, this.x, this.y, this.w, this.h);
+    }
+
+    mov() {
+        this.y -= 10;
     }
 }
     class Disco extends Obj {
