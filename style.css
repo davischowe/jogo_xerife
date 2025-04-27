@@ -1,16 +1,22 @@
 
 body {
   margin: 0;
-  background-image: url('backinicio2.gif'); /* fundo do deserto */
-  background-size: cover;
-  background-position: center right 200px;
-  background-repeat: no-repeat;
   color: white;
   font-family: 'Roboto Slab', serif;
   height: 100vh;
   overflow: hidden;
   display: flex;
-  background-position: calc(50% + 200px) center;
+  background-position: calc(50% + 250px) center;
+  background-color: #4b2e1f;
+}
+
+#imagem-principal {
+  flex: 1;
+  background-image: url('imgs/guard_bank_inicio.png');
+  background-size: cover; /* Faz preencher certinho */
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 115vh;
 }
 
 #painel {
@@ -59,14 +65,12 @@ body {
 }
 
 #gameover img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
+  height: 100vh;
+  width: 160vh;
+
 }
 
-body.gameover {
-  background-image: url('gif_game_over.gif');
-}
+
 
 h1,h2{
   font-family: 'Cinzel Decorative', cursive;

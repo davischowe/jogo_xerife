@@ -122,7 +122,7 @@ class Civilhomem extends Obj{
     }
 
     mov_civil(){
-        this.x += 2
+        this.x += 2 * velocidadeGlobal; // Alterado aqui
         if(this.x >= 1300){
             this.recomeca()
         }
@@ -152,7 +152,7 @@ class Civilhomem extends Obj{
 
 class Civilmulher extends Obj{
     mov_civil_M(){
-        this.x += 2
+        this.x += 2 * velocidadeGlobal; // Alterado aqui
         if(this.x >= 1300){
             this.recomeca()
         }
@@ -180,9 +180,12 @@ class Disco extends Obj {
     time = 0;  
     frame = 0; 
 
+
+    mov(){
+        this.y += this.vel * velocidadeGlobal; // Alterado aqui
+
     constructor(x, y, w, h, a) {
         super(x, y, w, h, a);  
-    }
 
     mov() {
         this.y += this.vel;  

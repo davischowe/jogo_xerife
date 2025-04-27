@@ -11,6 +11,9 @@ let txt_vida = new Texto()
 let bg = new Image();
 bg.src = 'imgs/pixil-frame-0.png';
 
+let fase = 1;
+let velocidadeGlobal = 1;
+
 let gameover = false
 let jogoIniciado = false;
 let jogoPausado = false;
@@ -42,21 +45,28 @@ let discos = {
     criaDisco() {
         this.time1 += 1;
         this.time2 += 1;
+              
+        let tempoMin1 = (fase === 1) ? 120 : 60; 
+        let tempoMin2 = (fase === 1) ? 150 : 85;
 
         let pos_x = (Math.random() * (900 - 2 + 1) + 2);
         let pos_x2 = (Math.random() * (900 - 2 + 1) + 2);
 
     
-        if (this.time1 >= 60) {
-            this.time1 = 0;
-            grupoDiscos.push(new Disco(pos_x, -200, 75, 75, 'imgs/sprintB_01.png')); 
-            console.log(grupoDiscos);
+        if (this.time1 >= tempoMin1) {
+            this.time1 = 0
+            grupoDiscos.push(new Disco(pos_x, -200, 75, 75, 'imgs/sprintB_01.png'))
         }
+    
+        if (this.time2 >= tempoMin2) {
+            this.time2 = 0
+            grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, 'imgs/sprintB_01.png'))
+        }
+    
+        if (fase >= 2 && this.time3 >= 135) {
+            this.time3 = 0
+            grupoDiscos.push(new Disco(pos_x3, -400, 75, 75, 'imgs/sprintB_01.png'))
 
-        if (this.time2 >= 85) {
-            this.time2 = 0;
-            grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, 'imgs/sprintB_01.png'));  
-            console.log(grupoDiscos);
         }
     },
 
@@ -178,6 +188,19 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+function checarFase() {
+    if (xerife.pontos >= 10 && fase === 1) {
+        fase = 2;
+        velocidadeGlobal += 0.5;
+        discos.time3 = 0; // ativa novo tipo de bandido
+    }
+    if (xerife.pontos >= 20 && fase === 2) {
+        fase = 3;
+        velocidadeGlobal += 0.5;
+    }
+    // pode adicionar mais fases aqui
+}
+
 
 function desenhar(){
 des.drawImage(bg, 0, 0, 1300, 750);
@@ -211,6 +234,7 @@ coracao.mov_ajuda();
 carregarCartucho();
 perderVida();
 destruirCivil();
+checarFase();
 ganharmaisVidas();
 }
 
