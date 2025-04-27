@@ -42,33 +42,35 @@ let discos = {
     time2: 0,
     time3: 0,
 
+
+
     criaDisco() {
-        this.time1 += 1;
-        this.time2 += 1;
-              
-        let tempoMin1 = (fase === 1) ? 120 : 60; 
-        let tempoMin2 = (fase === 1) ? 150 : 85;
+    this.time1 += 1;
+    this.time2 += 1;
+    this.time3 += 1;
+          
+    let tempoMin1 = (fase === 1) ? 120 : 60; 
+    let tempoMin2 = (fase === 1) ? 150 : 85;
 
-        let pos_x = (Math.random() * (900 - 2 + 1) + 2);
-        let pos_x2 = (Math.random() * (900 - 2 + 1) + 2);
+    let pos_x = (Math.random() * (900 - 2 + 1) + 2);
+    let pos_x2 = (Math.random() * (900 - 2 + 1) + 2);
+    let pos_x3 = (Math.random() * (900 - 2 + 1) + 2); 
+    
+    if (this.time1 >= tempoMin1) {
+        this.time1 = 0
+        grupoDiscos.push(new Disco(pos_x, -200, 75, 75, 'imgs/sprintB_01.png'))
+    }
 
-    
-        if (this.time1 >= tempoMin1) {
-            this.time1 = 0
-            grupoDiscos.push(new Disco(pos_x, -200, 75, 75, 'imgs/sprintB_01.png'))
-        }
-    
-        if (this.time2 >= tempoMin2) {
-            this.time2 = 0
-            grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, 'imgs/sprintB_01.png'))
-        }
-    
-        if (fase >= 2 && this.time3 >= 135) {
-            this.time3 = 0
-            grupoDiscos.push(new Disco(pos_x3, -400, 75, 75, 'imgs/sprintB_01.png'))
+    if (this.time2 >= tempoMin2) {
+        this.time2 = 0
+        grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, 'imgs/sprintB_01.png'))
+    }
 
-        }
-    },
+    if (fase >= 2 && this.time3 >= 135) {
+        this.time3 = 0
+        grupoDiscos.push(new Disco(pos_x3, -400, 75, 75, 'imgs/sprintB_01.png'))
+    }
+},
 
     des() {
         grupoDiscos.forEach((disc) => {
@@ -198,7 +200,6 @@ function checarFase() {
         fase = 3;
         velocidadeGlobal += 0.5;
     }
-    // pode adicionar mais fases aqui
 }
 
 
