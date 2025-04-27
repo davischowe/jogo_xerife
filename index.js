@@ -1,14 +1,13 @@
 let des = document.getElementById('des').getContext('2d')
 
-let xerife = new Xerife(300,650,150,65,'imgs/xerife.png')
-//let bandido = new Bandido(100,60,100,45,'imgs/bandido.png')
-//let bandido2 = new Bandido(200,400,100,45,'imgs/bandido2.png')
+let xerife = new Xerife(300,650,87,102,'imgs/xerife.png')
 let civil = new Civilhomem(120,800,87,102,'imgs/civil_H.png')
 let civilMule = new Civilmulher(1200,800,87,102,'imgs/civil_M.png')
+let carregador = new Ajudas(120,800,67,52,'imgs/imagem_cartucho.png')
+let coracao = new Ajudas (120,800, 57, 52, 'imgs/heart.png')
 
 let txt_pnts = new Texto()
 let txt_vida = new Texto()
-
 let bg = new Image();
 bg.src = 'imgs/pixil-frame-0.png';
 
@@ -43,57 +42,58 @@ let discos = {
     time2: 0,
     time3: 0,
 
-    criaDisco(){
-        this.time1 += 1
-        this.time2 += 1
-        this.time3 += 1
-        let pos_x = (Math.random() * (900 - 2 +1)+2)
-        let pos_x2 = (Math.random() * (900 - 2 +1)+2)
-        let pos_x3 = (Math.random() * (900 - 2 + 1) + 2)
-        
+    criaDisco() {
+        this.time1 += 1;
+        this.time2 += 1;
+              
         let tempoMin1 = (fase === 1) ? 120 : 60; 
         let tempoMin2 = (fase === 1) ? 150 : 85;
+
+        let pos_x = (Math.random() * (900 - 2 + 1) + 2);
+        let pos_x2 = (Math.random() * (900 - 2 + 1) + 2);
+
     
         if (this.time1 >= tempoMin1) {
             this.time1 = 0
-            grupoDiscos.push(new Disco(pos_x, -200, 75, 75, '/imgs/bandido.png'))
+            grupoDiscos.push(new Disco(pos_x, -200, 75, 75, 'imgs/sprintB_01.png'))
         }
     
         if (this.time2 >= tempoMin2) {
             this.time2 = 0
-            grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, '/imgs/bandido2.png'))
+            grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, 'imgs/sprintB_01.png'))
         }
     
         if (fase >= 2 && this.time3 >= 135) {
             this.time3 = 0
-            grupoDiscos.push(new Disco(pos_x3, -400, 75, 75, '/imgs/bandido.png'))
+            grupoDiscos.push(new Disco(pos_x3, -400, 75, 75, 'imgs/sprintB_01.png'))
+
         }
     },
-    des(){
-        grupoDiscos.forEach((disc)=>{
-            disc.des_obj()
-        })
+
+    des() {
+        grupoDiscos.forEach((disc) => {
+            disc.des_obj();  
+        });
     },
-    destroiDisco(){
-        grupoTiros.forEach((tiro)=>{
-            grupoDiscos.forEach((disc)=>{
-                if(tiro.colid(disc)){
-                    grupoTiros.splice(grupoTiros.indexOf(tiro), 1)
-                    grupoDiscos.splice(grupoDiscos.indexOf(disc), 1)
-                    xerife.pontos += 1
+
+    destroiDisco() {
+        grupoTiros.forEach((tiro) => {
+            grupoDiscos.forEach((disc) => {
+                if (tiro.colid(disc)) {
+                    grupoTiros.splice(grupoTiros.indexOf(tiro), 1);
+                    grupoDiscos.splice(grupoDiscos.indexOf(disc), 1);
+                    xerife.pontos += 1;
                 }
-            })
-        })
+            });
+        });
     },
-    atual(){
-        this.criaDisco()
-        this.destroiDisco()
-        grupoDiscos.forEach((disc)=>{
-            disc.mov()
-            if(disc.y >= 1010){
-                grupoDiscos.splice(grupoDiscos.indexOf(disc),1)
-            }
-        })
+
+    atual() {
+        this.criaDisco(); 
+        this.destroiDisco();  
+        grupoDiscos.forEach((disc) => {
+            disc.mov(); 
+        });
     }
 }
 
@@ -158,6 +158,26 @@ function perderVida(){
 
 }
 
+function carregarCartucho(){
+    grupoTiros.forEach((tiro) => {
+        if(tiro.colid(carregador)){  
+            grupoTiros.splice(grupoTiros.indexOf(tiro), 1);
+            xerife.cartucho += 1;
+            carregador.y = 2000;  
+        }
+    });
+}
+function ganharmaisVidas(){
+    grupoTiros.forEach((tiro) => {
+        if(tiro.colid(coracao)){  
+            grupoTiros.splice(grupoTiros.indexOf(tiro), 1);
+            xerife.vida += 1;
+            coracao.y = 2000;  
+        }
+    });
+}
+
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'g') {
         jogoIniciado = true;
@@ -189,6 +209,8 @@ tiros.des()
 discos.des()
 civil.des_obj();
 civilMule.des_obj();
+carregador.des_obj();
+coracao.des_obj();
 txt_vida.des_text('Vidas:', 40, 28, 'white', '20px Arial')
 txt_vida.des_text(xerife.vida, 90, 28, 'white', '20px Arial')
 txt_pnts.des_text('Pontos:', 910, 30, 'white', '20px Arial')
@@ -207,9 +229,13 @@ civil.mov_civil();
 civilMule.mov_civil_M();
 tiros.atual();
 discos.atual();
+carregador.mov_ajuda();
+coracao.mov_ajuda();
+carregarCartucho();
 perderVida();
 destruirCivil();
 checarFase();
+ganharmaisVidas();
 }
 
 function main(){

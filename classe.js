@@ -33,15 +33,37 @@ class Xerife extends Obj{
     pontos = 0
     vida = 10
     cartucho = 3;
-    municao = 30; // quantidade inicial
-    maxMunicao = 30; // valor máximo
+    municao = 30; 
+    maxMunicao = 30; 
+
+    constructor(x, y, w, h, a) {
+        super(x, y, w, h, a);
+        this.time = 0;
+        this.frame = 0;
+    }
 
     mov_xerife(){
+        this.time++;
         this.x += this.dir
         if(this.x <=1){
             this.x = 1
         }else if(this.x >= 843){
             this.x = 843
+        }
+        
+
+         if (this.time >= 10) {
+            this.time = 0;  
+
+          
+            this.frame = (this.frame + 1) % 3;  
+            if (this.frame === 0) {
+                this.a = 'imgs/xerife.png';  
+            } else if (this.frame === 1) {
+                this.a = 'imgs/xerife_02.png';  
+            } else if (this.frame === 2) {
+                this.a = 'imgs/xerife_03.png';  
+            }
         }
     }
     vidas(objeto) {
@@ -58,9 +80,27 @@ class Xerife extends Obj{
 }
 
 class Bandido extends Obj{
+    frame = 0; 
+    mov() {
+        this.y += 2;
+        this.frame += 1; 
+        if (this.frame >= 10) { 
+            this.a = this.a.includes('imgs/sprintB_01.png') ? 'imgs/sprintB_02.png' : 'imgs/campones2.png'; 
+            this.frame = 0; 
+        } 
+        if (this.x >= 1300) {
+            this.recomeca();
+        }
+    }
+    recomeca() {
+        this.y = -100;
+        this.y = Math.floor(Math.random() * ((416 - 2 + 1) + 2));
+    }
 
+}
 
-    mov_bandido(){
+class Ajudas extends Obj{
+    mov_ajuda(){
         this.y += 2
         if(this.y >= 780){
             this.recomeca()
@@ -75,12 +115,32 @@ class Bandido extends Obj{
 
 
 class Civilhomem extends Obj{
+    constructor(x, y, w, h, a) {
+        super(x, y, w, h, a);
+        this.time = 0;
+        this.frame = 0;
+    }
+
     mov_civil(){
         this.x += 2 * velocidadeGlobal; // Alterado aqui
         if(this.x >= 1300){
             this.recomeca()
         }
-    }   
+        this.time++;  
+
+        
+        if (this.time >= 10) {
+            this.time = 0;  
+
+          
+            this.frame = (this.frame + 1) % 3;  
+            if (this.frame === 0) {
+                this.a = 'imgs/civil_H.png';  
+            } else if (this.frame === 1) {
+                this.a = 'imgs/civil_H2.png';  
+            }
+        }
+    }
     recomeca(){
         this.x = -100
         this.y = Math.floor(Math.random() * ((416 - 2 + 1) + 2))
@@ -115,13 +175,37 @@ class Tiro extends Obj{
         this.y -= 10
     }
 }
-class Disco extends Obj{
-    vel = Math.random() * (6 - 3) + 3
+class Disco extends Obj {
+    vel = Math.random() * (6 - 3) + 3; 
+    time = 0;  
+    frame = 0; 
+
 
     mov(){
         this.y += this.vel * velocidadeGlobal; // Alterado aqui
+
+    constructor(x, y, w, h, a) {
+        super(x, y, w, h, a);  
+
+    mov() {
+        this.y += this.vel;  
+        this.time++;  
+
+        
+        if (this.time >= 10) {
+            this.time = 0;  
+
+          
+            this.frame = (this.frame + 1) % 3;  
+            if (this.frame === 0) {
+                this.a = 'imgs/sprintB_01.png';  
+            } else if (this.frame === 1) {
+                this.a = 'imgs/sprintsB_02.png';  
+            } else if (this.frame === 2) {
+                this.a = 'imgs/sprintsB_03.png';  
+            }
+        }
     }
-    
 }
 
 class Texto{
