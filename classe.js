@@ -184,18 +184,22 @@ class Civilmulher extends Obj{
 }
 
 class Tiro extends Obj{
-    constructor(x, y, w, h, at) {
-        super(x, y, w, h, 'imgs/tiro.png'); 
-        this.at = at; 
+        constructor(x, y, w, h, at) {
+            super(x, y, w, h, 'imgs/tiro.png'); 
+            this.at = at; 
+    
+            this.img = new Image();
+            this.img.src = this.a;
+        }
+    
+        des_tiro() {
+            des.drawImage(this.img, this.x, this.y, this.w, this.h);
+        }
+    
+        mov() {
+            this.y -= 5;
+        }
     }
-
-    des_tiro() {
-        let img = new Image();
-        img.src = this.a;
-        des.drawImage(img, this.x, this.y, this.w, this.h);
-    }
-
-
 class Disco extends Obj {
     vel = Math.random() * (6 - 3) + 3; 
     time = 0;  
@@ -222,6 +226,7 @@ class Disco extends Obj {
             }
         }
     }
+}
 
 class Texto{
     des_text(texto,x,y,cor,font){

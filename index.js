@@ -35,10 +35,10 @@ let tiros = {
         })
     },
     atual(){
-        grupoTiros.forEach((tiro)=>{
+        grupoTiros.forEach((tiro, index) => {
             tiro.mov()
-            if(tiro.y <= -10){
-                grupoTiros.splice(tiro[0],1)
+            if (tiro.y <= -10) {
+                grupoTiros.splice(index, 1);  
             }
         })
     }
@@ -288,7 +288,6 @@ function atualizar(){
     tiros.atual();
     discos.atual();
 
-    // move apenas o item de ajuda ativo
     if (ajudaAtual) {
         ajudaAtual.mov_ajuda();
     }
