@@ -1,6 +1,6 @@
 let des = document.getElementById('des').getContext('2d')
 
-let xerife = new Xerife(300,650,87,102,'imgs/xerife.png')
+let xerife = new Xerife(455,635,87,102,'imgs/xerife.png')
 let civil = new Civilhomem(120,800,87,102,'imgs/civil_H.png')
 let civilMule = new Civilmulher(1200,800,87,102,'imgs/civil_M.png')
 let carregador = new Ajudas(120,800,67,52,'imgs/imagem_cartucho.png')
@@ -18,7 +18,7 @@ let ajudaAtual = null; // nova variável para controlar qual ajuda está ativa
 let txt_pnts = new Texto()
 let txt_vida = new Texto()
 let bg = new Image();
-bg.src = 'imgs/pixil-frame-0.png';
+bg.src = 'imgs/canva3.png';
 
 let fase = 1;
 let velocidadeGlobal = 1;
@@ -51,33 +51,35 @@ let discos = {
     time2: 0,
     time3: 0,
 
+
+
     criaDisco() {
-        this.time1 += 1;
-        this.time2 += 1;
-              
-        let tempoMin1 = (fase === 1) ? 120 : 60; 
-        let tempoMin2 = (fase === 1) ? 150 : 85;
+    this.time1 += 1;
+    this.time2 += 1;
+    this.time3 += 1;
+          
+    let tempoMin1 = (fase === 1) ? 120 : 60; 
+    let tempoMin2 = (fase === 1) ? 150 : 85;
 
-        let pos_x = (Math.random() * (900 - 2 + 1) + 2);
-        let pos_x2 = (Math.random() * (900 - 2 + 1) + 2);
+    let pos_x = (Math.random() * (900 - 2 + 1) + 2);
+    let pos_x2 = (Math.random() * (900 - 2 + 1) + 2);
+    let pos_x3 = (Math.random() * (900 - 2 + 1) + 2); 
+    
+    if (this.time1 >= tempoMin1) {
+        this.time1 = 0
+        grupoDiscos.push(new Disco(pos_x, -200, 87,102, 'imgs/sprintB_01.png'))
+    }
 
-    
-        if (this.time1 >= tempoMin1) {
-            this.time1 = 0
-            grupoDiscos.push(new Disco(pos_x, -200, 75, 75, 'imgs/sprintB_01.png'))
-        }
-    
-        if (this.time2 >= tempoMin2) {
-            this.time2 = 0
-            grupoDiscos.push(new Disco(pos_x2, -300, 75, 75, 'imgs/sprintB_01.png'))
-        }
-    
-        if (fase >= 2 && this.time3 >= 135) {
-            this.time3 = 0
-            grupoDiscos.push(new Disco(pos_x3, -400, 75, 75, 'imgs/sprintB_01.png'))
+    if (this.time2 >= tempoMin2) {
+        this.time2 = 0
+        grupoDiscos.push(new Disco(pos_x2, -300, 87,102, 'imgs/sprintB_01.png'))
+    }
 
-        }
-    },
+    if (fase >= 2 && this.time3 >= 135) {
+        this.time3 = 0
+        grupoDiscos.push(new Disco(pos_x3, -400, 87,102, 'imgs/sprintB_01.png'))
+    }
+},
 
     des() {
         grupoDiscos.forEach((disc) => {
@@ -140,7 +142,15 @@ function spawnAjuda() {
 document.addEventListener('keypress', (ev)=>{
     if (ev.key === 'l') {
         if (xerife.municao > 0) {
-            grupoTiros.push(new Tiro(xerife.x - 4 + xerife.w / 2, xerife.y, 8, 16, 'red'))
+            grupoTiros.push(new Tiro(xerife.x - 10 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
+            xerife.municao -= 1;
+        }
+    }
+})
+document.addEventListener('keypress', (ev)=>{
+    if (ev.key === 'L') {
+        if (xerife.municao > 0) {
+            grupoTiros.push(new Tiro(xerife.x - 10 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
             xerife.municao -= 1;
         }
     }
@@ -153,12 +163,20 @@ document.addEventListener('keydown', (e) => {
         }
     }
 });
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'R') {
+        if(xerife.cartucho > 0){
+            xerife.municao = xerife.maxMunicao;
+            xerife.cartucho -= 1;
+        }
+    }
+});
     
 document.addEventListener('keydown', (e)=>{
     if((e.key === 'a' )||(e.key === 'ArrowLeft')){
-        xerife.dir = -5
+        xerife.dir =- 7
     }else if((e.key === 'd')||(e.key === 'ArrowRight')){
-       xerife.dir = 5
+       xerife.dir = 7
     }
 })
 
@@ -166,6 +184,21 @@ document.addEventListener('keyup', (e)=>{
         if ((e.key === 'a')||(e.key === 'ArrowLeft')) {
             xerife.dir = 0
         }else if((e.key === 'd')||(e.key === 'ArrowRight')){
+            xerife.dir = 0
+        }
+} )
+document.addEventListener('keydown', (e)=>{
+    if((e.key === 'A' )||(e.key === 'ArrowLeft')){
+        xerife.dir =- 7
+    }else if((e.key === 'D')||(e.key === 'ArrowRight')){
+       xerife.dir = 7
+    }
+})
+
+document.addEventListener('keyup', (e)=>{
+        if ((e.key === 'A')||(e.key === 'ArrowLeft')) {
+            xerife.dir = 0
+        }else if((e.key === 'D')||(e.key === 'ArrowRight')){
             xerife.dir = 0
         }
 } )
@@ -218,13 +251,12 @@ function checarFase() {
     if (xerife.pontos >= 10 && fase === 1) {
         fase = 2;
         velocidadeGlobal += 0.5;
-        discos.time3 = 0; // ativa novo tipo de bandido
+        discos.time3 = 0; 
     }
     if (xerife.pontos >= 20 && fase === 2) {
         fase = 3;
         velocidadeGlobal += 0.5;
     }
-    // pode adicionar mais fases aqui
 }
 
 

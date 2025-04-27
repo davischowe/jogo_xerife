@@ -90,8 +90,8 @@ p{
   padding: 10px;
   font-size: 20px;
 }
-canvas{
-    background-color: grey;
+/* canvas{
+    background: url(imgs/background_ofc.png);
     margin: auto;
     position: absolute;
     top: 0;
@@ -99,6 +99,6 @@ canvas{
     left: 0;
     right: 0;
     border-radius: 10px;
-}
+} */
 
 

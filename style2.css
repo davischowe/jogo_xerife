@@ -3,7 +3,7 @@ body{
 }
 
 canvas{
-    background-color: black;
+    background-color:black;
     margin: auto;
     position: absolute;
     top: 0;
@@ -14,7 +14,7 @@ canvas{
 }
 
 body{
-    /* background: url(imgs/bg_guard_bank.jpg); */
+    background: url(imgs/background_ofc.png);
     background-color: #3b3b3b;
     background-repeat: no-repeat;
     background-size: 100vw 100vh
