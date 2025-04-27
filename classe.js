@@ -76,11 +76,11 @@ class Bandido extends Obj{
 
 class Civilhomem extends Obj{
     mov_civil(){
-        this.x += 2
+        this.x += 2 * velocidadeGlobal; // Alterado aqui
         if(this.x >= 1300){
             this.recomeca()
         }
-    }
+    }   
     recomeca(){
         this.x = -100
         this.y = Math.floor(Math.random() * ((416 - 2 + 1) + 2))
@@ -92,7 +92,7 @@ class Civilhomem extends Obj{
 
 class Civilmulher extends Obj{
     mov_civil_M(){
-        this.x += 2
+        this.x += 2 * velocidadeGlobal; // Alterado aqui
         if(this.x >= 1300){
             this.recomeca()
         }
@@ -119,7 +119,7 @@ class Disco extends Obj{
     vel = Math.random() * (6 - 3) + 3
 
     mov(){
-        this.y += this.vel
+        this.y += this.vel * velocidadeGlobal; // Alterado aqui
     }
     
 }
