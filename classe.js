@@ -195,30 +195,30 @@ class Tiro extends Obj{
         des.drawImage(img, this.x, this.y, this.w, this.h);
     }
 
-    mov() {
-        this.y -= 10;
+
+class Disco extends Obj {
+    vel = Math.random() * (6 - 3) + 3; 
+    time = 0;  
+    frame = 0; 
+
+    constructor(x, y, w, h, a) {
+        super(x, y, w, h, a);  
     }
-}
-    class Disco extends Obj {
-        vel = Math.random() * (6 - 3) + 3; 
-        time = 0;  
-        frame = 0; 
-        
-        mov() {
-            this.y += this.vel * velocidadeGlobal; 
-            this.time++;  
-    
-            if (this.time >= 10) {
-                this.time = 0;  
-    
-                this.frame = (this.frame + 1) % 3;  
-                if (this.frame === 0) {
-                    this.a = 'imgs/sprintB_01.png';  
-                } else if (this.frame === 1) {
-                    this.a = 'imgs/sprintsB_02.png';  
-                } else if (this.frame === 2) {
-                    this.a = 'imgs/sprintsB_03.png';  
-                }
+
+    mov() {
+        this.y += this.vel * velocidadeGlobal; 
+        this.time++;  
+
+        if (this.time >= 10) {
+            this.time = 0;  
+            this.frame = (this.frame + 1) % 3;  
+
+            if (this.frame === 0) {
+                this.a = 'imgs/sprintB_01.png';  
+            } else if (this.frame === 1) {
+                this.a = 'imgs/sprintsB_02.png';  
+            } else if (this.frame === 2) {
+                this.a = 'imgs/sprintsB_03.png';  
             }
         }
     }

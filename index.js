@@ -6,6 +6,15 @@ let civilMule = new Civilmulher(1200,800,87,102,'imgs/civil_M.png')
 let carregador = new Ajudas(120,800,67,52,'imgs/imagem_cartucho.png')
 let coracao = new Ajudas (120,800, 57, 52, 'imgs/heart.png')
 
+
+let tempoDeJogo = 0;  
+let tempoAjuda = 0;   
+let ajudaDisponivel = false;
+let ajudaAtual = null; // nova variável para controlar qual ajuda está ativa
+
+
+
+
 let txt_pnts = new Texto()
 let txt_vida = new Texto()
 let bg = new Image();
@@ -111,6 +120,23 @@ function destruirCivil(){
             civil.y = 2000;
         }
     });
+}
+
+
+
+function spawnAjuda() {
+    if (!ajudaDisponivel) return; 
+
+    let sorteio = Math.random(); // número entre 0 e 1
+    if (sorteio < 0.5) {
+        carregador.recomeca();
+        coracao.y = 2000; 
+        ajudaAtual = carregador; // define o carregador como ativo
+    } else {
+        coracao.recomeca();
+        carregador.y = 2000; 
+        ajudaAtual = coracao; // define o coração como ativo
+    }
 }
 
 document.addEventListener('keypress', (ev)=>{
@@ -255,21 +281,41 @@ txt_vida.des_text(xerife.cartucho,680, 28, 'white', '20px Arial');
 
 
 function atualizar(){
-xerife.x += xerife.dir 
-xerife.mov_xerife();
-civil.mov_civil();
-civilMule.mov_civil_M();
-tiros.atual();
-discos.atual();
-carregador.mov_ajuda();
-coracao.mov_ajuda();
-carregarCartucho();
-perderVida();
-destruirCivil();
-checarFase();
-ganharmaisVidas();
-}
+    xerife.x += xerife.dir 
+    xerife.mov_xerife();
+    civil.mov_civil();
+    civilMule.mov_civil_M();
+    tiros.atual();
+    discos.atual();
 
+    // move apenas o item de ajuda ativo
+    if (ajudaAtual) {
+        ajudaAtual.mov_ajuda();
+    }
+
+    carregarCartucho();
+    perderVida();
+    destruirCivil();
+    checarFase();
+    ganharmaisVidas();
+
+    if (jogoIniciado && !jogoPausado) {
+        tempoDeJogo++;
+    }
+
+    // libera ajuda depois de 25 segundos (25 * 60 = 1500 frames)
+    if (tempoDeJogo >= 600) {
+        ajudaDisponivel = true;
+    }
+
+    if (ajudaDisponivel) {
+        tempoAjuda++;
+        if (tempoAjuda >= 300) { 
+            spawnAjuda();
+            tempoAjuda = 0;
+        }
+    }
+}
 function main(){
     des.clearRect(0, 0, 1300, 750);
 
