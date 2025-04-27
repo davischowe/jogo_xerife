@@ -18,6 +18,9 @@ let gameover = false
 let jogoIniciado = false;
 let jogoPausado = false;
 
+let somTiro = new Audio('sounds/pistola.mp3');
+somTiro.volume = 0.5;
+
 let grupoTiros = [] 
 let tiros = {
     des(){
@@ -118,6 +121,9 @@ document.addEventListener('keypress', (ev)=>{
         if (xerife.municao > 0) {
             grupoTiros.push(new Tiro(xerife.x - 4 + xerife.w / 2, xerife.y, 8, 16, 'red'))
             xerife.municao -= 1;
+
+            somTiro.currentTime = 0;
+            somTiro.play()
         }
     }
 })
