@@ -175,28 +175,25 @@ class Tiro extends Obj{
         this.y -= 10
     }
 }
+
+
 class Disco extends Obj {
     vel = Math.random() * (6 - 3) + 3; 
     time = 0;  
     frame = 0; 
 
-
-    mov(){
-        this.y += this.vel * velocidadeGlobal; // Alterado aqui
-
     constructor(x, y, w, h, a) {
         super(x, y, w, h, a);  
+    }
 
     mov() {
-        this.y += this.vel;  
+        this.y += this.vel * velocidadeGlobal; 
         this.time++;  
 
-        
         if (this.time >= 10) {
             this.time = 0;  
-
-          
             this.frame = (this.frame + 1) % 3;  
+
             if (this.frame === 0) {
                 this.a = 'imgs/sprintB_01.png';  
             } else if (this.frame === 1) {
