@@ -10,8 +10,7 @@ let coracao = new Ajudas (120,800, 57, 52, 'imgs/heart.png')
 let tempoDeJogo = 0;  
 let tempoAjuda = 0;   
 let ajudaDisponivel = false;
-let ajudaAtual = null; // nova variável para controlar qual ajuda está ativa
-
+let ajudaAtual = null; 
 
 
 
