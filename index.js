@@ -11,9 +11,6 @@ let tempoDeJogo = 0;
 let tempoAjuda = 0;   
 let ajudaDisponivel = false;
 let ajudaAtual = null; 
-
-
-
 let txt_pnts = new Texto()
 let txt_vida = new Texto()
 let bg = new Image();
@@ -129,24 +126,23 @@ function destruirCivil(){
 function spawnAjuda() {
     if (!ajudaDisponivel) return; 
 
-    let sorteio = Math.random(); // número entre 0 e 1
+    let sorteio = Math.random(); 
     if (sorteio < 0.5) {
         carregador.recomeca();
         coracao.y = 2000; 
-        ajudaAtual = carregador; // define o carregador como ativo
+        ajudaAtual = carregador; 
     } else {
         coracao.recomeca();
         carregador.y = 2000; 
-        ajudaAtual = coracao; // define o coração como ativo
+        ajudaAtual = coracao; 
     }
 }
 
 document.addEventListener('keypress', (ev)=>{
     if (ev.key === 'l') {
         if (xerife.municao > 0) {
-            grupoTiros.push(new Tiro(xerife.x - 10 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
+            grupoTiros.push(new Tiro(xerife.x - 1 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
             xerife.municao -= 1;
-            
             somTiro.currentTime = 0;
             somTiro.play()
         }
@@ -155,7 +151,7 @@ document.addEventListener('keypress', (ev)=>{
 document.addEventListener('keypress', (ev)=>{
     if (ev.key === 'L') {
         if (xerife.municao > 0) {
-            grupoTiros.push(new Tiro(xerife.x - 10 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
+            grupoTiros.push(new Tiro(xerife.x - 1 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
             xerife.municao -= 1;
 
             somTiro.currentTime = 0;
@@ -310,7 +306,6 @@ function atualizar(){
         tempoDeJogo++;
     }
 
-    // libera ajuda depois de 25 segundos (25 * 60 = 1500 frames)
     if (tempoDeJogo >= 600) {
         ajudaDisponivel = true;
     }
