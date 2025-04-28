@@ -11,10 +11,6 @@ let tempoDeJogo = 0;
 let tempoAjuda = 0;   
 let ajudaDisponivel = false;
 let ajudaAtual = null; 
-
-
-
-
 let txt_pnts = new Texto()
 let txt_vida = new Texto()
 let bg = new Image();
@@ -147,7 +143,6 @@ document.addEventListener('keypress', (ev)=>{
         if (xerife.municao > 0) {
             grupoTiros.push(new Tiro(xerife.x - 1 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
             xerife.municao -= 1;
-
             somTiro.currentTime = 0;
             somTiro.play()
         }
