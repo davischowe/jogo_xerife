@@ -197,7 +197,7 @@ class Tiro extends Obj{
         }
     
         mov() {
-            this.y -= 5;
+            this.y -= 30;
         }
     }
 class Disco extends Obj {
