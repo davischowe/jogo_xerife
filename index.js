@@ -146,6 +146,9 @@ document.addEventListener('keypress', (ev)=>{
         if (xerife.municao > 0) {
             grupoTiros.push(new Tiro(xerife.x - 10 + xerife.w / 2, xerife.y, 26, 42, 'imgs/tiro.png'));
             xerife.municao -= 1;
+            
+            somTiro.currentTime = 0;
+            somTiro.play()
         }
     }
 })
